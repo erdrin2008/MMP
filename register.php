@@ -16,6 +16,26 @@
                     <div class="card body">
                         <h2 class="text-center">register</h2>
 
+                        <?php
+                         if[$_SERVER['REQUEST_METHOD'] == 'POST']{
+
+                            $name = $_POST['name'];
+                            $email= $_POST['email'];
+                            $pass= password_hash($_POST['password'], password_bcypt);
+                            $Sql= " INSERT INTO users (name, email,password) VALUE (?,?,?)";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt = bindParam("sss" . $name , $email , $pass);
+                            $stmt = execute();
+
+                        if($stmt -> execute()){
+                            echo "<div>request station succesful<a href='login.php'>login here</a></div>";
+                        }else {
+                          echo "<div class= 'alert alert-danger'>error ". $stmt ->error"</div>"
+                        }
+                    
+                    }
+                        ?>
+
                         <form method="POST">
                             <div class="mb-3">
                                 <label for="name" class="form-label">name</label>
@@ -29,7 +49,7 @@
                                 <label for="password" class="form-label">password</label>
                                 <input type="password" name="password" id="password" class="form=control">
                              </div>
-                             <button type="submit" class="btn-btn">Login</button>
+                             <button type="submit" class="btn-btn">register</button>
                                
                             
                         </form>

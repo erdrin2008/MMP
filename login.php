@@ -22,11 +22,12 @@
                           if[$_SERVER['REQUEST_METHOD'] == 'POST']{
 
                             $email = $_POST['email'];
+
                             $pass = $_POST['pass'];
 
                             $Sql = 'SELECT * FROM users WHERE  email = ?';
                             $stmt = $pdo->prepare($sql);
-                            $stmt = bindParam(":email" $email);
+                            $stmt = bindParam("s" $email);
                             $stmt = execute();
                             $result = $stmt->get_results();
                             $user = $result->fetch_assoc();
@@ -52,7 +53,7 @@
                         <label for="password" class="from-label">email</label>
                         <input type="password" name="password" id="password" class="form-control"required>
 
-                        <button type='sumbit' class="btn btn-primary w-100">LOG IN</button>
+                        <button type='sumbit' class="btn btn-primary w-100">log in</button>
                     </div>
                 </div>
             </div>
