@@ -1,16 +1,12 @@
-<?php 
-$host='localhost';
-$user='root';
-$pass='';
-$dbname='MMP';
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "MMv";
 
-try{
-    $pdo= new PDO("mysql:host=$host ; dbname=$dbname," $user, $pass);
-}catch(PDOException $e){
-    echo"ERROR" $e ->getMessage();
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
-
-
-
-
 ?>
